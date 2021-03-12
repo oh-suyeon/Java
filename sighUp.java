@@ -55,12 +55,7 @@ public class sighUp {
 		System.out.println("나이 :" + age + "세");
 		System.out.println("키 :" + height + "cm");
 		
-		System.out.println("===========================");
-		
-		
-		
-		
-		
+		System.out.println("===========================");		
 		
 	}
 

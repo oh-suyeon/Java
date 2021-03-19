@@ -83,6 +83,24 @@ public class sort {
 		
 				
 		
+		//  5개의 숫자 5, 2, 3, 1, 4를 삽입정렬, 오름차순정렬
+		
+		System.out.println("\n예제4=====================");
+		
+		int[] insert = new int[]{5, 2, 3, 1, 4};
+	
+		for(int i = 1; i < insert.length; i++){		
+			int temps = insert[i];
+			int j = 0;
+			for(j = i - 1; j >= 0; j--){
+				if(temps < insert[j]){
+					insert[j + 1] = insert[j];
+				}else{
+					break;
+				}
+			}insert[j + 1] = temps;
+		}System.out.println(Arrays.toString(insert));
+		
 		
 		
 		

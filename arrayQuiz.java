@@ -11,7 +11,7 @@ public class arrayQuiz {
 		 * 그 수로 나누어 떨어지는 숫자로만 이루어진 배열을 정렬하여 출력해주세요.
 		 * 
 		 */
-		System.out.println("\n과제 풀기");
+		System.out.println("배열 랜덤 값으로 초기화");
 		
 		int[] arr = new int[100];
 		for(int i = 0; i < arr.length;i++){
@@ -78,7 +78,7 @@ public class arrayQuiz {
 					break;
 				}
 			}result[j + 1] = min;
-		}System.out.println(random + "값으로 떨어지는 숫자들\n" + Arrays.toString(result));
+		}System.out.println(random + "값으로 나뉘어 떨어지는 숫자 정렬\n" + Arrays.toString(result));
 		
 		
 		

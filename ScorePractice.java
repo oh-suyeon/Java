@@ -26,6 +26,7 @@ public class ScorePractice {
 			avgName[i] = Math.round((double)sumName[i] / (double)subjects.length * 100.0) / 100.0;
 		}
 		
+		
 		int[] rank = new int[scores.length];
 		for(int i = 0; i < scores.length; i++){
 			rank[i] = 1;

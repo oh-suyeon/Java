@@ -2,7 +2,7 @@ package study;
 
 import e_oop.ScanUtil;
 
-public class AirConditioner {
+public class AirConditioner2 {
 	// 에어컨의 변수 : 전원, 온도(올리기/내리기) 바람세기(1~5), 바람방향(올리기/내리기)  
 	
 	boolean power;
@@ -14,7 +14,7 @@ public class AirConditioner {
 	final int windSpeedMax = 5;
 	final int windSpeedMin = 1;
 	
-	AirConditioner(){										// 기본 값 초기화
+	AirConditioner2(){										// 기본 값 초기화
 		power = false;
 		temperature = 18;
 		windSpeed = 2;
@@ -27,27 +27,42 @@ public class AirConditioner {
 	}
 	
 	void temperatureUp(){									// 온도 올리기
-		if(power && temperature > 10)
-		temperature++;
-		System.out.println("현재 온도 : " + temperature);
+		if(power && temperature > 10){
+			temperature++;
+			System.out.println("현재 온도 : " + temperature);
+		}else if(!power){
+			System.out.println("전원이 꺼져 있습니다.");
+		}
+		
 	}
 	
 	void temperatureDown(){									// 온도 내리기
-		if(power && temperature > 10)
-		temperature--;
-		System.out.println("현재 온도 : " + temperature);
+		if(power && temperature > 10){
+			temperature--;
+			System.out.println("현재 온도 : " + temperature);
+		}else if(!power){
+			System.out.println("전원이 꺼져 있습니다.");
+		}
 	}
 	
 	void speedChange(int speedLevel){						// 바람세기 입력 (1~5)
 		if(power && speedLevel >= windSpeedMin && speedLevel <= windSpeedMax){
 			windSpeed = speedLevel;
+			showSpeed();
+		}else if(!power){
+			System.out.println("전원이 꺼져 있습니다.");
 		}
-		showSpeed();
+		
+		
 	}
 	
 	void directionChange(){
-		windDirection = !windDirection;
-		System.out.println("현재 풍향 : " + (windDirection? "위" : "아래"));	// 풍향 조절
+		if(power){
+			windDirection = !windDirection;
+			System.out.println("현재 풍향 : " + (windDirection? "위" : "아래"));	// 풍향 조절
+		}else{
+			System.out.println("전원이 꺼져 있습니다.");
+		}
 	}
 	
 	void showSpeed(){
@@ -64,7 +79,7 @@ public class AirConditioner {
 	
 	public static void main(String[] args) {
 
-		AirConditioner ac = new AirConditioner();
+		AirConditioner2 ac = new AirConditioner2();
 
 		do {
 			System.out.println("---------에어컨리모컨---------");
@@ -79,36 +94,36 @@ public class AirConditioner {
 			}
 
 			if (control == 2) {
+				outer : 
 				do {
 					System.out.println("----------온도 조절----------");
 					System.out.println("현재 온도 : " + ac.temperature);
-					System.out.println("1. 올리기\t 2. 내리기       3. 메인");
+					System.out.println("1. 올리기      2. 내리기       3. 메인");
 					System.out.println("--------------------------");
 					int control2 = ScanUtil.nextInt();
-					if (control2 == 1) {
-						ac.temperatureUp();
+					
+					switch(control2){
+					case 1 : ac.temperatureUp(); break;
+					case 2 : ac.temperatureDown(); break;
+					default : break outer;
 					}
-					if (control2 == 2) {
-						ac.temperatureDown();
-					}
-					if (control2 == 3) {
-						break;
-					}
+					
 				} while (true);
 			}
 
 			if (control == 3) {
+				outer : 
 				do {
 					System.out.println("---------바람세기 조절---------");
 					System.out.println("현재 바람 세기 : " + ac.windSpeed);
 					System.out.println("바람 세기를 입력해주세요.");
-					System.out.println("1(아주 약함) ~ 5(아주 강함) 6. 메인");
+					System.out.println("1(아주 약함)~5(아주 강함) 6. 메인");
 					System.out.println("--------------------------");
 					int control2 = ScanUtil.nextInt();
-					if (control2 == 6) {
-						break;
-					} else {
-						ac.speedChange(control2);
+					
+					switch(control2){
+					case 1 : case 2 : case 3 : case 4 : case 5 : ac.speedChange(control2); break;
+					default : break outer;
 					}
 				} while (true);
 			}

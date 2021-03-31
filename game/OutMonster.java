@@ -1,5 +1,7 @@
 package study.game;
 
+import f_game.Item;
+
 public class OutMonster {
 	
 	String name;
@@ -8,11 +10,12 @@ public class OutMonster {
 	int def;
 	OutItem[] items;
 	
-	OutMonster(String name, int hp, int att, int def){
+	OutMonster(String name, int hp, int att, int def, OutItem[] items){
 		this.name = name;
 		this.hp = hp;
 		this.att = att;
 		this.def = def;
+		this.items = items;
 	}
 	
 	void attack(OutCharacter c){

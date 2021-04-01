@@ -2,6 +2,7 @@ package study.game;
 
 import e_oop.ScanUtil;
 
+
 public class OutCharacter {
 	
 	String name;
@@ -13,9 +14,6 @@ public class OutCharacter {
 	int def;
 	OutItem[] items;
 	
-	static int time = 10;
-	
-	
 	OutCharacter(String name, int hp, int mental, int att, int def){
 		this.name = name;
 		this.maxHp = hp;
@@ -24,39 +22,27 @@ public class OutCharacter {
 		this.mental = this.maxMental;
 		this.att = att;
 		this.def = def;
-		this.items = new OutItem[10];
+		this.items = new OutItem[5];
 	}
 	
-	void showInfo(){
+	void characterInfo(OutCharacter c){
+		System.out.println("======================");
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		System.out.println("|                  |");
+		System.out.println("|    DAILY NEWS    |");
+		System.out.println("\t" + c.name);
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		
-		if(hp > 80){
-			System.out.println("<" + name + "의 몸에 상처는 없습니다.>");
-		}else if(hp > 50){
-			System.out.println("<" + name + "은 작은 상처를 입었습니다.>");
-		}else if(hp > 30){
-			System.out.println("<" + name + "의 상처에서 피가 흐르기 시작합니다.>");
-		}else{
-			System.out.println("<" + name + "은 피를 너무 많이 흘렸습니다.>");
-		}
+		showState(hp, mental);
 		
-		if(mental > 80){
-			System.out.println("<" + name + "은 정신이 또렷합니다.>");
-		}else if(hp > 50){
-			System.out.println("<" + name + "은 공포심에 정신이 혼란해지기 시작합니다.>");
-		}else if(hp > 30){
-			System.out.println("<" + name + "은 겁에 질렸습니다.>");
-		}else{
-			System.out.println("<" + name + "은 정신이 혼미합니다.>");
-		}
-		
+		System.out.println("items");
 		for(int i = 0; i < items.length; i++){
 			if(items[i] != null){
 				System.out.println("(" + (i + 1) + ")" + items[i].name);
 			}
 		}
-		int input = ScanUtil.nextInt();
-		items[input - 1].itemInfo();	// 아이템 선택 - 자세히 보기/사용하기 기능 
-		
+		System.out.println("======================");
+		System.out.println();
 	}
 	
 	void attack(OutMonster m){
@@ -68,27 +54,36 @@ public class OutCharacter {
 	}
 	
 	void getItem(OutItem item){
-		System.out.println("<" + item.name + "을 획득하였습니다.>");
+		System.out.println("<" + item.name + ">");
 		for(int i = 0; i < items.length; i++){
 			if(items[i] == null){
 				items[i] = item;
 				break;
 			}
 		}
-		hp += item.hp;	// 잃어버린 hp만 회복할 수 있다. 
+		hp += item.hp;	
 		att += item.att;
 		def += item.def;
 	}
 	
-	void hide(){
-		
-	}
-	
-	void open(){
-		
-	}
-	
-	void interaction(){
-		
-	}
-}
+	void showState(int hp, int mental){
+		System.out.println("hp");
+		for(int i = 0; i < maxHp; i++){
+			if(hp > i){ 
+				System.out.print("■");
+			} else {
+				System.out.print("□");
+			}
+		}
+		System.out.println();
+		System.out.println("mental");
+		for(int i = 0; i < maxMental; i++){
+			if(mental > i){ 
+				System.out.print("■");
+			} else {
+				System.out.print("□");
+			}
+		}
+		System.out.println();
+	}	
+}	

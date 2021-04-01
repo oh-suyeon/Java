@@ -15,14 +15,12 @@ public class OutItem {
 		this.mental = mental;
 	}
 	
-	String itemInfo() {
+	String itemInfo(OutCharacter c) {
 		String info = name + " :";
 		if (0 < hp)	 info += " 체력" + hp;
 		if (0 < att) info += " 공격" + att;
 		if (0 < def) info += " 방어" + def;
 		if (0 < mental) info += " 정신력" + mental;
-		
-		
 		return info;
 	}
 

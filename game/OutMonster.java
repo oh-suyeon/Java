@@ -1,7 +1,5 @@
 package study.game;
 
-import f_game.Item;
-
 public class OutMonster {
 	
 	String name;
@@ -18,6 +16,10 @@ public class OutMonster {
 		this.items = items;
 	}
 	
+	void monsterInfo(){
+		System.out.println("-");
+	}
+	
 	void attack(OutCharacter c){
 		int damage = att - c.def;
 		damage = damage <= 0? 1 : damage;
@@ -26,8 +28,16 @@ public class OutMonster {
 		System.out.println(c.name + "의 남은 HP" + c.hp);
 	}
 	
-	OutItem ItemDrop(){
-		return items[(int)(Math.random() * items.length)];
+//	OutItem dropItem(){
+//		System.out.println("<" + items[(int)(Math.random() * items.length)].name + "을 획득했습니다.>");
+//		System.out.println("<소지품을 확인해보세요.>");
+//		return items[(int)(Math.random() * items.length)];
+//	}
+	
+	void dropItem2(OutCharacter c){
+		System.out.println("<" + items[(int)(Math.random() * items.length)].name + "을 획득했습니다.>");
+		System.out.println("<소지품을 확인해보세요.>");
+		c.items[0] = items[(int)(Math.random() * items.length)];
 	}
 	
 }

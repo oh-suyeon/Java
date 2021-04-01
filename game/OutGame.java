@@ -2,59 +2,87 @@ package study.game;
 
 import e_oop.ScanUtil;
 
-
 public class OutGame {
 
 	OutCharacter c;
-	OutGhost g1; 
-	OutBox b1 = new OutBox();
 	OutItem[] items;
-	OutRoom r1 = new OutRoom();
-
+	Basement basement;
+	IceBox icebox; 
+	Ghost ghost1;
+	LockedDoor door1;
+	GhostCard gc;
+	Memo m;
+	
 	OutGame(){
-		c = new OutCharacter("JANE", 100, 100, 50, 50);
-		g1 = new OutGhost("MIKE", 100, 100, 50);
+		c = new OutCharacter("Jane", 10, 10, 10, 10);
+		basement = new Basement();
+		icebox = new IceBox("아이스 박스", 0, 0, 0, items);
+		ghost1 = new Ghost("Mike", 10, 10, 10, items);
+		door1 = new LockedDoor();
+		
+		gc = new GhostCard(ghost1);
+		icebox.items = new OutItem[1];
+		icebox.items[0] = gc;
+		
+		m = new Memo("쪽지", 0, 0, 0, 0);
+		ghost1.items = new OutItem[1];
+		ghost1.items[0] = m;
 	}
-	
+
 	public static void main(String[] args) {
-		new OutGame().Start();
+		new OutGame().start();
 	}
 	
-	private void Start(){
-		
-		r1.showRoom();
-		
-		escape:
+	private void start() {
+		int input = 0;
 		while(true){
-			int input = ScanUtil.nextInt();
+			basement.showRoom();
+			System.out.println("<당신의 상태를 보려면 '0'키를 누르세요.>");
+			input = ScanUtil.nextInt();
+			
+			escape :
 			switch(input){
-			case 1: b1.openBox(c);
-					getBack();
-				    break;
-			case 2: r1.interactGhost();
-					g1.Quiz(c);
-					getBack();		// 오답일 경우 뒤로 가기가 나오지 않음.
-					break;
-			case 3: r1.openDoor();
-					getBack();
-					break;
-			case 0: c.showInfo();
-					break;
-			default : break escape;
+				case 0: c.characterInfo(c);
+						getBack();
+						break;
+				case 1: icebox.openBox(c);
+						getBack();
+						break;
+				case 2: ghost1.monsterInfo(); 
+							System.out.println("이름을 알려주려면 (1), 뒤로 가려면 (2)키를 누르세요.");
+							int input2 = ScanUtil.nextInt();
+								switch(input2){
+									case 1: ghost1.interact(c);
+											break;
+									default: break;
+								}
+						break;
+				case 3: door1.puzzleInfo(); 
+							System.out.println("문을 열어보려면 (1), 뒤로 가려면 (2)키를 누르세요.");
+							input2 = ScanUtil.nextInt();
+								switch(input2){
+									case 1: door1.playPuzzle();
+											break;
+									default: break;
+								}
+						break;
+				default : break escape;
 			}
-		}		
+		}
 	}
-		
 	
-	private void getBack(){
-		System.out.println("<뒤로 물러서려면 (9)키를 누르세요.>");
+	private void getBack() {
+		System.out.println("<뒤로 가려면 (9)키를 누르세요.>");
 		int input = ScanUtil.nextInt();
 		back:
 		switch(input){
-		case 9: Start(); break;
-		default: break back;
+			case 9: start(); break;
+			default: break back;
 		}
 	}
+	
+	
+	
 	
 	
 	

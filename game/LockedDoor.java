@@ -42,7 +42,7 @@ public class LockedDoor extends OutPuzzle{
 	}
 	
 	@Override
-	void playPuzzle(){
+	void interact(){
 		
 		for(int i = 0; i < 10; i++){
 			System.out.println("<0부터 9까지의 숫자 세 개를 입력하세요.>");
@@ -82,13 +82,13 @@ public class LockedDoor extends OutPuzzle{
 				System.out.println("덜컥!");
 				System.out.println("<문이 열렸습니다!>");
 				success();
+				System.exit(0);
 				break;
 			}
 			
 			if(timeCount > 10){
-				System.out.println("GameOver");
-				System.out.println();
-				failure();
+				System.out.println("<Game Over>");
+				System.exit(0);
 			}
 		}
 	}
@@ -101,7 +101,6 @@ public class LockedDoor extends OutPuzzle{
 		if(timeCount >= 10){
 			System.out.println("<경보음이 울립니다. 문 뒤에서 발소리가 들립니다.>");
 		}
-		failure();
 	}
 	
 	private void success () {
@@ -109,10 +108,4 @@ public class LockedDoor extends OutPuzzle{
 		System.out.println();
 	}
 	
-	private void failure () {
-		System.out.println("<당신은 지하실을 탈출하지 못했습니다.>");
-		System.out.println();
-	}
-	
-
 }

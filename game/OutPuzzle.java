@@ -6,7 +6,7 @@ public abstract class OutPuzzle {
 	
 	abstract void puzzleInfo();
 	
-	abstract void playPuzzle();
+	abstract void interact();
 	
 	
 }

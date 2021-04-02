@@ -16,7 +16,7 @@ public class OutMonster {
 		this.items = items;
 	}
 	
-	void monsterInfo(){
+	void monsterInfo(OutCharacter c){
 		System.out.println("-");
 	}
 	

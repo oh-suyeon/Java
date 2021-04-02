@@ -45,12 +45,18 @@ public class OutGame {
 				case 0: c.characterInfo(c);
 						getBack();
 						break;
-				case 1: icebox.openBox(c);
-						getBack();
-						break;
-				case 2: ghost1.monsterInfo(); 
-							System.out.println("이름을 알려주려면 (1), 뒤로 가려면 (2)키를 누르세요.");
+				case 1: icebox.monsterInfo(c);
+							System.out.println("상자를 뒤져보려면 (1), 뒤로 가려면 (2)키를 누르세요.");
 							int input2 = ScanUtil.nextInt();
+								switch(input2){
+									case 1: icebox.interact(c);
+											break;
+									default: break;
+								}
+						break;
+				case 2: ghost1.monsterInfo(c); 
+							System.out.println("이름을 알려주려면 (1), 뒤로 가려면 (2)키를 누르세요.");
+							input2 = ScanUtil.nextInt();
 								switch(input2){
 									case 1: ghost1.interact(c);
 											break;
@@ -61,7 +67,7 @@ public class OutGame {
 							System.out.println("문을 열어보려면 (1), 뒤로 가려면 (2)키를 누르세요.");
 							input2 = ScanUtil.nextInt();
 								switch(input2){
-									case 1: door1.playPuzzle();
+									case 1: door1.interact();
 											break;
 									default: break;
 								}
@@ -70,6 +76,7 @@ public class OutGame {
 			}
 		}
 	}
+	
 	
 	private void getBack() {
 		System.out.println("<뒤로 가려면 (9)키를 누르세요.>");
@@ -80,10 +87,5 @@ public class OutGame {
 			default: break back;
 		}
 	}
-	
-	
-	
-	
-	
 	
 }

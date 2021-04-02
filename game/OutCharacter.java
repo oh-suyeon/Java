@@ -64,6 +64,7 @@ public class OutCharacter {
 		hp += item.hp;	
 		att += item.att;
 		def += item.def;
+		mental += item.mental;
 	}
 	
 	void showState(int hp, int mental){

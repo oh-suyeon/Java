@@ -9,7 +9,7 @@ public class Ghost extends OutMonster {
 	}
 	
 	@Override
-	void monsterInfo(){
+	void monsterInfo(OutCharacter c){
 		System.out.println("--------------------------------");
 		System.out.println("    MMMMMMMMMMMMMMMMMMMMMMMM");
 		System.out.println("   MMMMMMM ◎  MMMMMMM ◎  MMMMMM");
@@ -25,8 +25,12 @@ public class Ghost extends OutMonster {
 		int damage = att - c.def;
 		damage = damage <= 0? 1 : damage;
 		c.mental = c.mental < damage ? c.mental - c.mental : c.mental - damage;
-		System.out.println("<유령이 " + c.name + "의 정신에 " + damage + "만큼 데미지를 주었습니다.>" );
+		System.out.println("<화가 난 유령이 " + c.name + "의 정신에 " + damage + "만큼 데미지를 주었습니다.>" );
 		System.out.println("<" + c.name + "의 남은 정신력 " + c.mental + "/" + c.maxMental + ">");
+		if(c.mental <= 0){
+			System.out.println("<Game Over>");
+			System.exit(0);
+		}
 	}
 	
 	void interact(OutCharacter c){

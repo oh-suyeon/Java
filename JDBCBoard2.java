@@ -16,7 +16,7 @@ public class JDBCBoard2 {
 	SimpleDateFormat dateForm = new SimpleDateFormat("yy-MM-dd");
 	
 	String regex = "[0-9a-zA-Z]{4,10}";
-	Pattern p = Pattern.compile(regex);	// 
+	Pattern p = Pattern.compile(regex);	
 	
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user = "djs02061";
@@ -26,7 +26,7 @@ public class JDBCBoard2 {
 	PreparedStatement ps = null;
 	ResultSet rs = null;
 	
-	// 글 등록 INSERT + password
+	// 글 등록 INSERT 
 	void post(){
 		
 		System.out.println("제목 : ");
@@ -168,7 +168,7 @@ public class JDBCBoard2 {
 	}
 	
 	
-	// 글 수정 UPDATE + password
+	// 글 수정 UPDATE 
 	void update(int no){
 		
 		System.out.println("수정할 제목 : ");
